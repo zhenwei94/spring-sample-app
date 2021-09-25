@@ -1,0 +1,22 @@
+https://mkyong.com/spring-boot/spring-rest-hello-world-example/
+
+POJO
+Book{
+id, name, author, (BigDecimal)price
+}
+
+API Endpoint:
+/books - GET, POST find all and save
+
+/books/{id} - GET find by id
+
+/books/{id} - PUT save or update
+
+/books/{id} - PATCH update author only
+
+/books/{id} - DELETE delete book
+
+
+
+BootstrapConfig
+Add 3 new book
