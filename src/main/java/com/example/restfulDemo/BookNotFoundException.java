@@ -1,4 +1,4 @@
-package practice.practice1.restservice;
+package com.example.restfulDemo;
 
 public class BookNotFoundException extends RuntimeException {
     public BookNotFoundException(Long id) {

@@ -1,4 +1,4 @@
-package practice.practice1.restservice;
+package com.example.restfulDemo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

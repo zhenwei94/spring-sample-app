@@ -1,4 +1,4 @@
-package practice.practice1.restservice;
+package com.example.restfulDemo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
