@@ -32,7 +32,7 @@ objects:
           volumes:
             - name: application-config
               configMap:
-                name: quarkus-app-config
+                name: spring-app-config
                 items:
                   - key: application.properties
                     path: application.properties

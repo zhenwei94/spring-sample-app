@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-app-config
+data:
+  application.properties: |-
+    greeter.message=Hello From app properties
