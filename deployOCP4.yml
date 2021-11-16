@@ -1,0 +1,79 @@
+#Without Build Image Config
+
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: spring-template
+objects:
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: spring
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: "spring"
+      template:
+        metadata:
+          labels:
+            app: "spring"
+        spec:
+          containers:
+            - name: spring
+              image: image-registry.openshift-image-registry.svc:5000/test/spring
+              ports:
+                - containerPort: 8080
+                  port: "TCP"
+              volumeMounts:
+                - name: application-config
+                  mountPath: "/deployments/config"
+                  readOnly: true
+          volumes:
+            - name: application-config
+              configMap:
+                name: quarkus-app-config
+                items:
+                  - key: application.properties
+                    path: application.properties
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+        - imageChangeParams:
+          automatic: true
+          containerNames:
+            - "spring"
+          from:
+            kind: ImageStreamTag
+            name: image-registry.openshift-image-registry.svc:5000/test/spring
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 25%
+          maxSurge: 25%
+
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: spring
+    spec:
+      ports:
+        - name: 8080-tcp
+          protocol: TCP
+          port: 8080
+          targetPort: 8080
+      selector:
+        app: spring
+
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      name: spring
+    spec:
+      to:
+        kind: Service
+        name: spring
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+        wildcardPolicy: None
