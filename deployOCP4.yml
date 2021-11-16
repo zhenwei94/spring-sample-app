@@ -20,28 +20,28 @@ objects:
             app: "spring"
         spec:
           containers:
-          - env:
-              - name: PROP_VAL
-                valueFrom:
-                  configMapKeyRef:
-                    name: spring-app-config
-                    key: PROP_VAL
-              - name: spring
-                image: image-registry.openshift-image-registry.svc:5000/test/spring
-                ports:
-                  - containerPort: 8080
-                    port: "TCP"
-                volumeMounts:
-                  - name: application-config
-                    mountPath: "/deployments/config"
-                    readOnly: true
-          volumes:
-            - name: application-config
-              configMap:
-                name: spring-app-config
-                items:
-                  - key: application.properties
-                    path: application.properties
+            - name: spring
+              image: image-registry.openshift-image-registry.svc:5000/test/spring
+              ports:
+                - containerPort: 8080
+                  port: "TCP"
+              volumeMounts:
+                - name: application-config
+                  mountPath: "/deployments/config"
+                  readOnly: true
+          env:
+            - name: PROP_VAL
+              valueFrom:
+                configMapKeyRef:
+                  name: spring-app-config
+                  key: PROP_VAL
+        volumes:
+          - name: application-config
+            configMap:
+              name: spring-app-config
+              items:
+                - key: application.properties
+                  path: application.properties
       triggers:
         - type: ConfigChange
         - type: ImageChange
