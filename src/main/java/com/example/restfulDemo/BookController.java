@@ -1,6 +1,7 @@
 package com.example.restfulDemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +14,16 @@ public class BookController {
     @Autowired
     private BookRepositiory bookRepositiory;
 
+    @Value("${prop.val:default val}")
+    private String propVal;
+
 
     @GetMapping
-    List<Book>findAll(){
-        return bookRepositiory.findAll();
+//    List<Book>findAll(){
+//        return bookRepositiory.findAll();
+//    }
+    String findAll(){
+        return propVal;
     }
 
     @PostMapping

@@ -4,4 +4,4 @@ metadata:
   name: spring-app-config
 data:
   application.properties: |-
-    greeter.message=Hello From app properties
+    prop.val=test
