@@ -27,14 +27,14 @@ objects:
                   port: "TCP"
               volumeMounts:
                 - name: application-config
-                  mountPath: "/deployments/config"
+                  mountPath: "/app/config"
                   readOnly: true
-              env:
-                - name: PROP_VAL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: spring-app-config
-                      key: PROP_VAL
+#              env:
+#                - name: PROP_VAL
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: spring-app-config
+#                      key: PROP_VAL
           volumes:
             - name: application-config
               configMap:
