@@ -25,6 +25,13 @@ objects:
               ports:
                 - containerPort: 8080
                   port: "TCP"
+              readinessProbe:
+                httpGet:
+                  scheme: HTTPS
+                  path: /actuator/health
+                  port: 8080
+                initialDelaySeconds: 10
+                periodSeconds: 5
               volumeMounts:
                 - name: application-config
                   mountPath: "/app/config"
