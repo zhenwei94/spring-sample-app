@@ -3,7 +3,6 @@ kind: ConfigMap
 metadata:
   name: spring-app-config
 data:
-#  PROP_VAL: test
-  keys: |
+  PROP_VAL: test
 #  application.properties: |-
-    PROP_VAL=test
+#    PROP_VAL=test

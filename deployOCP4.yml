@@ -29,22 +29,19 @@ objects:
                 - name: application-config
                   mountPath: "/app/config"
                   readOnly: true
-#              env:
-#                - name: PROP_VAL
-#                  valueFrom:
-#                    configMapKeyRef:
-#                      name: spring-app-config
-#                      key: PROP_VAL
-              envFrom:
-                - configMapRef:
-                    name: spring-app-config
+              env:
+                - name: PROP_VAL
+                  valueFrom:
+                    configMapKeyRef:
+                      name: spring-app-config
+                      key: PROP_VAL
           volumes:
             - name: application-config
               configMap:
                 name: spring-app-config
-#                items:
-#                  - key: application.properties
-#                    path: application.properties
+                items:
+                  - key: application.properties
+                    path: application.properties
       triggers:
         - type: ConfigChange
         - type: ImageChange
