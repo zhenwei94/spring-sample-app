@@ -32,6 +32,11 @@ objects:
                   port: 8080
                 initialDelaySeconds: 10
                 periodSeconds: 5
+              livenessProbe:
+                tcpSocket:
+                  port: 8080
+                initialDelaySeconds: 15
+                timeoutSeconds: 1
               volumeMounts:
                 - name: application-config
                   mountPath: "/app/config"
