@@ -42,9 +42,9 @@ objects:
             - name: application-config
               configMap:
                 name: spring-app-config
-                items:
-                  - key: application.properties
-                    path: application.properties
+#                items:
+#                  - key: application.properties
+#                    path: application.properties
       triggers:
         - type: ConfigChange
         - type: ImageChange
