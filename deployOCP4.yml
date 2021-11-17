@@ -27,7 +27,7 @@ objects:
                   port: "TCP"
               readinessProbe:
                 httpGet:
-                  scheme: HTTPS
+                  scheme: HTTP
                   path: /actuator/health
                   port: 8080
                 initialDelaySeconds: 10
