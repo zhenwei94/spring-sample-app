@@ -4,5 +4,6 @@ metadata:
   name: spring-app-config
 data:
 #  PROP_VAL: test
-  application.properties: |-
+  keys: |
+#  application.properties: |-
     PROP_VAL=test
